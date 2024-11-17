@@ -39,7 +39,7 @@ $(SIM_DIR)/$(SIM_NAME).mk: $(wildcard hdl/*.sv)
 	${WARNING_ARGS}
 
 $(SIM_DIR)/$(SIM_NAME): $(SIM_DIR)/$(SIM_NAME).mk
-	$(MAKE) -j${NPROC} -C $(SIM_DIR) $(BUILD_ARGS) -f $(SIM_NAME).mk
+	$(MAKE) -C $(SIM_DIR) $(BUILD_ARGS) -f $(SIM_NAME).mk
 
 simulate: $(SIM_DIR)/$(SIM_NAME).mk $(SIM_DIR)/$(SIM_NAME)
 	$(SIM_DIR)/$(SIM_NAME) +UVM_TESTNAME=$(UVM_TEST) | tee $(TEMPFILE)
