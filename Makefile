@@ -6,6 +6,5 @@ all: tests
 tests:
 	$(MAKE) -C hdl/cores/lif
 
-.PHONY: clean
 clean:
 	$(MAKE) -C hdl/cores/lif clean

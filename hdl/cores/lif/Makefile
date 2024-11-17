@@ -3,14 +3,13 @@ all: simulate
 ################################################################################
 # Testbench setup
 ################################################################################
-VERILATOR_ROOT := ../../../verilator
-VERILATOR := $(VERILATOR_ROOT)/bin/verilator
+VERILATOR := verilator
 
-UVM_ROOT ?=../../../uvm-verilator
-UVM_TEST ?= mem_wr_rd_test
+UVM_HOME ?=../../../uvm-verilator
+UVM_TEST ?= lif_test
 
-VERILOG_DEFINE_FILES = ${UVM_ROOT}/src/uvm.sv ./hdl/tbench_top.sv ./hdl/lif.sv
-VERILOG_INCLUDE_DIRS = hdl ${UVM_ROOT}/src
+VERILOG_DEFINE_FILES = ${UVM_HOME}/src/uvm.sv ./hdl/tbench_top.sv ./hdl/lif.sv
+VERILOG_INCLUDE_DIRS = hdl ${UVM_HOME}/src
 
 ################################################################################
 # Compilation / simulation configuration
@@ -50,3 +49,5 @@ clean:
 	rm -rf simv*.daidir csrc
 	rm -rf csrc* simv*
 	rm -rf $(SIM_DIR)
+
+.PHONY: clean simulate

@@ -3,8 +3,11 @@ on: [push, pull_request]
 jobs:
   test:
     runs-on: ubuntu-latest
+    env:
+      UVM_HOME: /uvm
     steps:
     - uses: actions/checkout@v4
-    - run: sudo apt-get update && sudo apt-get install -y git help2man perl python3 make autoconf g++ flex bison ccache
-    - run: cd verilator && autoconf && ./configure && make
+    - run: sudo apt-get update && sudo apt-get install -y git help2man perl python3 make autoconf g++ flex bison ccache wget
+    - run: wget https://github.com/verilator/verilator/archive/refs/tags/v5.028.tar.gz && tar xf v5.028.tar.gz && cd verilator-5.028 && autoconf && ./configure && sudo make install
+    - run: git clone https://github.com/antmicro/uvm-verilator.git -b current-patches $UVM_HOME
     - run: make
