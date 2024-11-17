@@ -5,6 +5,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
-    - run: apt-get update && apt-get install -y git help2man perl python3 make autoconf g++ flex bison ccache
+    - run: sudo apt-get update && sudo apt-get install -y git help2man perl python3 make autoconf g++ flex bison ccache
     - run: cd verilator && autoconf && ./configure && make
     - run: make
