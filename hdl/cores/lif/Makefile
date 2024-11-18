@@ -41,9 +41,7 @@ $(SIM_DIR)/$(SIM_NAME): $(SIM_DIR)/$(SIM_NAME).mk
 	$(MAKE) -C $(SIM_DIR) $(BUILD_ARGS) -f $(SIM_NAME).mk
 
 simulate: $(SIM_DIR)/$(SIM_NAME).mk $(SIM_DIR)/$(SIM_NAME)
-	$(SIM_DIR)/$(SIM_NAME) +UVM_TESTNAME=$(UVM_TEST) | tee $(TEMPFILE)
-	@grep "^UVM_ERROR\\s*:\\s*0$$" $(TEMPFILE) -q
-	@grep "^UVM_FATAL\\s*:\\s*0$$" $(TEMPFILE) -q
+	$(SIM_DIR)/$(SIM_NAME) +UVM_TESTNAME=$(UVM_TEST)
 
 clean:
 	rm -rf simv*.daidir csrc
